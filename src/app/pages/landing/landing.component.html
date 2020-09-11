@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Students</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!--<div *ngFor="let student of profile">
+  <ul>
+    <a
+      [routerLink]="['/', 'profile', student.userID]"
+      routerLinkActive="router-link-active"
+    >
+      <li>{{ student.name }}</li></a
+    >
+  </ul>
+</div>-->
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Student No</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Bio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of profile">
+      <td>{{ student.userID }}</td>
+
+      <td>
+        <a
+          [routerLink]="['/', 'profile', student.userID]"
+          routerLinkActive="router-link-active"
+        >
+          {{ student.name }}</a
+        >
+      </td>
+      <td><img [src]="student.image" /></td>
+      <td>{{ student.Bio }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><strong>Student with highest mark:</strong></h3>
+
+<div class="highest" *ngFor="let marks of mark">
+  <div *ngFor="let stu of profile">
+    <div *ngIf="marks.mark > '74' && stu.userID == '215705552'">
+      <ul>
+        <li><strong>Student No :</strong>{{ stu.userID }}</li>
+        <li><strong>Student Name :</strong>{{ stu.name }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

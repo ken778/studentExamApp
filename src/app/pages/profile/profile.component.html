@@ -1,0 +1,101 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Profile</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<h3><strong>Student information</strong></h3>
+<table id="studentInfo" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Bio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="student">
+      <td>{{ student.name }}</td>
+      <td>{{ student.Bio }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><strong>Subjects </strong></h3>
+
+<table class="table table-sriped">
+  <thead>
+    <tr>
+      <th>Subject Code</th>
+      <th>Subject Name</th>
+      <th>Year Registered</th>
+      <th>Lecture</th>
+      <th>Mark%</th>
+      <th>Exam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="subject">
+      <td>{{ subject.subjID }}</td>
+      <td>{{ subject.subjName }}</td>
+      <td>{{ subject.yearReg }}</td>
+      <td>{{ subject.lecture }}</td>
+      <td>{{ subject.mark }}</td>
+      <td>
+        <div
+          class="col-3 text-success"
+          *ngIf="subject.mark > '49' && subject.mark < '79'"
+        >
+          Qualify
+        </div>
+        <div
+          class="col-3 text-success"
+          *ngIf="subject.mark > '44' && subject.mark < '50'"
+        >
+          Qulify for re-exam
+        </div>
+        <div class="col-3 text-danger" *ngIf="subject.mark < '45'">Fail!</div>
+        <div class="col-3 text-success" *ngIf="subject.mark > '79'">
+          Qualify with distinction
+        </div>
+      </td>
+
+      <!--<ng-template class="col-3 text-success" #qulifyTemplate>
+        Qualify
+      </ng-template>-->
+    </tr>
+    <tr *ngIf="subject2">
+      <td>{{ subject2.subjID }}</td>
+      <td>{{ subject2.subjName }}</td>
+      <td>{{ subject2.yearReg }}</td>
+      <td>{{ subject2.lecture }}</td>
+      <td>{{ subject2.mark }}</td>
+      <td>
+        <div
+          class="col-3 text-success"
+          *ngIf="subject2.mark > '49' && subject2.mark < '79'"
+        >
+          Qualify
+        </div>
+        <div
+          class="col-3 text-success"
+          *ngIf="subject2.mark > '44' && subject2.mark < '50'"
+        >
+          Qulify for re-exam
+        </div>
+        <div class="col-3 text-danger" *ngIf="subject2.mark < '45'">Fail!</div>
+        <div class="col-3 text-success" *ngIf="subject2.mark > '79'">
+          Qualify with distinction
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button mat-raised-button color="primary">
+  <a
+    class="back"
+    [routerLink]="['/landing']"
+    routerLinkActive="router-link-active"
+    >Back</a
+  >
+</button>
