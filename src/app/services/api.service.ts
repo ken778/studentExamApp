@@ -10,6 +10,10 @@ export class ApiService {
   users: any[];
   student: any;
 
+  //getiing days
+  getDays() {
+    return this.data.days;
+  }
   //returning student details
   getInfo() {
     return this.data.students;
@@ -31,7 +35,7 @@ export class ApiService {
     return this.student.find((e) => e.userID === reference);
   }
 
-  //second subject
+  //subject
   getStudentSubj2(reference) {
     this.users = this.data.students;
     this.users.forEach((item) => {

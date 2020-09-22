@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Students</span>
+    <span>Student App</span>
   </mat-toolbar-row>
 </mat-toolbar>
 <!--<div *ngFor="let student of profile">
@@ -13,18 +13,159 @@
     >
   </ul>
 </div>-->
+<!--<form>
+  <div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="First name" />
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name" />
+    </div>
+  </div>
+</form>-->
+<h2>Add student information</h2>
+<form id="form" #addStudents="ngForm" (ngSubmit)="addStudent(addStudents)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputNames">Full Names</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="name and surname"
+        name="name"
+        #name="ngModel"
+        ngModel
+        required
+      />
+    </div>
 
+    <div class="form-group col-md-6">
+      <label>Bio</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Software developer"
+        name="bio"
+        #bio="ngModel"
+        ngModel
+        reguired
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Subject Code</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="IBR2958"
+        name="subjectID"
+        #subjectID="ngModel"
+        ngModel
+        required
+      />
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Subject Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Systems Software"
+        name="subject"
+        #subject="ngModel"
+        ngModel
+        required
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputNames">Year</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="yyyy"
+        name="yearReg"
+        #yearReg="ngModel"
+        ngModel
+        required
+      />
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Lecturer Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Mr Mathebula"
+        name="lecture"
+        #lecture="ngModel"
+        ngModel
+        required
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>institute</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Tshwane University of Technology"
+        name="institute"
+        #institute="ngModel"
+        ngModel
+        required
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Subject mark</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="30"
+        name="marks"
+        #marks="ngModel"
+        ngModel
+        required
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Image</label>
+    <input
+      type="file"
+      class="form-control-file"
+      id="exampleFormControlFile1"
+      name="image"
+      #image="ngModel"
+      ngModel
+      required
+    />
+  </div>
+  <button id="add" type="submit" mat-raised-button color="primary">Add</button>
+</form>
+
+<!--<div *ngFor="let da of weekDays; index as i">
+  {{ da }} <button type="submit" (click)="deleteDay(i)">Delete</button>
+</div>
+-->
+<h2>Students</h2>
 <table class="table table-striped">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th>Student No</th>
       <th>Name</th>
       <th>Image</th>
       <th>Bio</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of profile">
+    <tr *ngFor="let student of profile; index as i">
       <td>{{ student.userID }}</td>
 
       <td>
@@ -37,19 +178,69 @@
       </td>
       <td><img [src]="student.image" /></td>
       <td>{{ student.Bio }}</td>
+      <td>
+        <!--<button type="submit" (click)="deleteStu(i)">Delete</button>-->
+        <button
+          type="submit"
+          (click)="deleteStu(i)"
+          mat-raised-button
+          color="primary"
+        >
+          Edit
+        </button>
+        <button
+          id="btn"
+          type="submit"
+          (click)="deleteStu(i)"
+          mat-raised-button
+          color="warn"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<h3><strong>Student with highest mark:</strong></h3>
-
-<div class="highest" *ngFor="let marks of mark">
-  <div *ngFor="let stu of profile">
-    <div *ngIf="marks.mark > '74' && stu.userID == '215705552'">
-      <ul>
-        <li><strong>Student No :</strong>{{ stu.userID }}</li>
-        <li><strong>Student Name :</strong>{{ stu.name }}</li>
-      </ul>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Student with high mark</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="highest" *ngFor="let marks of mark">
+      <div *ngFor="let stu of profile">
+        <div *ngIf="marks.mark > '74' && stu.userID == marks.userID">
+          <ul>
+            <li><strong>Student No :</strong>{{ stu.userID }}</li>
+            <li><strong>Student Name :</strong>{{ stu.name }}</li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  </mat-card-content>
+</mat-card>
+
+<h2>Days of the week</h2>
+<div *ngFor="let day of weekDays; index as i">
+  {{ day }}
+  <button type="button" (click)="editDay(i)" value="edit">edit</button>
+  <button type="submit" (click)="deleteDay(i)">delete</button>
 </div>
+<h2>form for adding a day</h2>
+<form #addDay="ngForm" (ngSubmit)="updates(addDay)">
+  <input name="name" #name="ngModel" ngModel required />
+  <button type="submit">Add</button>
+</form>
+<h2>update a day</h2>
+<form #updateDay2="ngForm" (ngSubmit)="updatesDay(updateDay2)">
+  <input name="name" #name="ngModel" ngModel required />
+  <button type="submit">Update</button>
+</form>
+<table>
+  <tr>
+    <td>:</td>
+    <td><input type="text" [(ngModel)]="day" ngModel required /></td>
+  </tr>
+  <td><button type="submit">Update</button></td>
+</table>

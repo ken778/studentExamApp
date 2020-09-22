@@ -10,3 +10,21 @@ img {
 h3 {
   margin-left: 1rem;
 }
+.example-card {
+  max-width: 400px;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+}
+#btn {
+  margin-left: 3px;
+}
+#form {
+  width: 45%;
+}
+h2 {
+  padding: 1%;
+  text-decoration: underline;
+}
+#add {
+  margin-left: 13px;
+}

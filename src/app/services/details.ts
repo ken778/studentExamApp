@@ -44,7 +44,7 @@ export class Details {
           yearReg: '2020',
           lecture: 'Mr Lefota',
           institution: 'Tshwane University of Technology',
-          mark: '85',
+          mark: '50',
         },
         {
           subjID: 'SAN7553',
@@ -71,7 +71,7 @@ export class Details {
           yearReg: '2020',
           lecture: 'Mr Seloka',
           institution: 'Tshwane University of Technology',
-          mark: '55',
+          mark: '80',
         },
         //
         /*{
